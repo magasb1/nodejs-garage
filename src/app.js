@@ -1,6 +1,6 @@
 require('dotenv').config
 const express = require('express')
-const { PrismaClient } = require('@prisma/client')
+//const { PrismaClient } = require('@prisma/client')
 const compression = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
