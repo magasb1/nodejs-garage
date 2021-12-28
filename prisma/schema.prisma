@@ -10,19 +10,8 @@ datasource db {
   url      = "file:dev.db"
 }
 
-// Define the `User` table in the database
 model User {
   id    Int     @default(autoincrement()) @id
-  name  String?
-  email String  @unique
-  posts Post[]
-}
-// Define the `Post` table in the database
-model Post {
-  id        Int      @default(autoincrement()) @id
-  published Boolean? @default(false)
-  title     String
-  content   String?
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  Int? 
+  name  String  @unique
+  password String
 }
