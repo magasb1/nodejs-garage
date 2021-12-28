@@ -1,0 +1,1 @@
+module.exports.gipoController = require('./gipo.controller');
