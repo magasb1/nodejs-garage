@@ -7,7 +7,7 @@ const helmet = require('helmet');
 const morgan = require('./config/morgan');
 const routes = require('./routes/v1');
 
-const prisma = new PrismaClient()
+//const prisma = new PrismaClient()
 const app = express()
 
 // enable logging
