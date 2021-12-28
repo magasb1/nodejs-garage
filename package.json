@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
@@ -24,8 +25,5 @@
   "devDependencies": {
     "nodemon": "^2.0.15",
     "prisma": "^3.7.0"
-  },
-  "prisma": {
-    "seed": ""
   }
 }
