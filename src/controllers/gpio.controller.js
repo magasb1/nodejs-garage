@@ -1,5 +1,5 @@
 require('dotenv').config
-const Gipo = require('onoff').Gipo
+const Gpio = require('onoff').Gpio
 
 const activateRelay = () => {
     const relay = new Gpio(process.env.RELAY_GIPO_PIN, 'out');
