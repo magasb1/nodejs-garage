@@ -1,10 +1,12 @@
 const express = require('express');
+const gpioController = require('../../controllers/gpio.controller')
 
 const router = express.Router();
 
 router
     .route('/')
     .get((req, res, next) => {
+        gpioController.activateRelay,
         res.json({
             "Status": "Ok",
             "Message": "Switch port"

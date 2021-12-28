@@ -3,7 +3,6 @@ const Gpio = require('onoff').Gpio
 
 const activateRelay = () => {
     const relay = new Gpio(process.env.RELAY_GIPO_PIN, 'out');
-
     relay.read()
       .then(() => relay.write(process.env.RELAY_ON))
       .then(() => setTimeout(() => { 
