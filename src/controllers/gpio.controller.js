@@ -1,7 +1,7 @@
 require('dotenv').config
 const Gpio = require('onoff').Gpio
 
-const activateRelay = () => {
+const activateRelay = (req, res, next) => {
   const relay = new Gpio(process.env.RELAY_GIPO_PIN, 'out');
   relay.read()
     .then(() => {
@@ -18,6 +18,8 @@ const activateRelay = () => {
   process.on('SIGINT', () => {
     relay.unexport();
   })
+
+  next();
 };
 
 module.exports = activateRelay;
