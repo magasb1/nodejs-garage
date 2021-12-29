@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../../.env' })
+require('dotenv').config({ path: './../../.env' })
 const Gpio = require('onoff').Gpio
 
 const activateRelay = (req, res, next) => {
