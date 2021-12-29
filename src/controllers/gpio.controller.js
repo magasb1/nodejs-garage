@@ -7,10 +7,10 @@ module.exports = {
     const relay = new Gpio(process.env.RELAY_GPIO_PIN, 'high');
     
     console.log(`Opening relay`)
-    relay.writeSync(process.env.RELAY_ON)
+    relay.write(1)
     setTimeout(() => {
       console.log(`Closing relay`)
-      relay.writeSync(process.env.RELAY_OFF)
+      relay.write(0)
       setTimeout(() => {
         relay.unexport()
       }, process.env.RELAY_TIMEOUT)
