@@ -5,9 +5,7 @@ const router = express.Router();
 
 router
     .route('/')
-    .get((req, res, next) => {
-        gpioController.activateRelay
-    });
+    .get(gpioController.activateRelay);
 
 router
     .route('/status')
