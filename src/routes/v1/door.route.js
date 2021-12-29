@@ -6,7 +6,7 @@ const router = express.Router();
 router
     .route('/')
     .get((req, res, next) => {
-        gpioController.activateRelay,
+        gpioController.activateRelay
         res.json({
             "Status": "Ok",
             "Message": "Switch port"
