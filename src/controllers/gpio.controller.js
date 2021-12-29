@@ -3,7 +3,7 @@ const Gpio = require('onoff').Gpio
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
 
 module.exports = {
-  activateRelay: async (req, res, next) => {
+  activateRelay: (req, res, next) => {
     const relay = new Gpio(process.env.RELAY_GIPO_PIN, 'out');
     relay.read()
       .then(() => {
