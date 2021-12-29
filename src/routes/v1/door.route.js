@@ -7,10 +7,6 @@ router
     .route('/')
     .get((req, res, next) => {
         gpioController.activateRelay
-        res.json({
-            "Status": "Ok",
-            "Message": "Switch port"
-        })
     });
 
 router

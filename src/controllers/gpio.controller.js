@@ -2,7 +2,7 @@ require('dotenv').config({ path: "../../.env" })
 const Gpio = require('onoff').Gpio
 
 module.exports = {
-  activateRelay: (req, res, next) => {
+  activateRelay: async (req, res, next) => {
     const relay = new Gpio(process.env.RELAY_GIPO_PIN, 'out');
     relay.read()
       .then(() => {
@@ -20,6 +20,6 @@ module.exports = {
       relay.unexport();
     })
 
-    next();
+    return res.json({"Status": "Ok", "Message": "Door triggered"})
   }
 }
