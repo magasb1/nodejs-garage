@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../.env' })
+
 const express = require('express')
 //const { PrismaClient } = require('@prisma/client')
 const compression = require('compression');
@@ -6,6 +6,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('./config/morgan');
 const routes = require('./routes/v1');
+
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 
 //const prisma = new PrismaClient()
 const app = express()
