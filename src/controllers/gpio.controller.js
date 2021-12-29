@@ -14,12 +14,10 @@ module.exports = {
         console.log(`OFF (${process.env.RELAY_OFF})`)
         relay.writeSync(process.env.RELAY_OFF)
       }, process.env.RELAY_TIMEOUT))
+      .then(() => setTimeout(() => {
+        relay.unexport();
+      }, process.env.RELAY_TIMEOUT))
       .catch(err => console.log(err))
-
-
-    process.on('SIGINT', () => {
-      relay.unexport();
-    })
 
     return res.json({"Status": "Ok", "Message": "Door triggered"})
   }
