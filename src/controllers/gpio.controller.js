@@ -17,12 +17,6 @@ module.exports = {
         }, process.env.RELAY_TIMEOUT)
       })
       .then(() => {
-        setTimeout(() => {
-          console.log(`UNEXPORT`)
-          relay.unexport();
-        }, process.env.RELAY_TIMEOUT)
-      })
-      .then(() => {
         return res.json({ "Status": "Ok", "Message": "Door triggered" })
       })
       .catch(err => console.log(err))
