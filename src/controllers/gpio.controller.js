@@ -27,7 +27,7 @@ module.exports = {
     const TIMEOUT = process.env.RELAY_TIMEOUT || 500
 
     const sensor = new Gpio(SENSOR_PIN, 'in', 'both');
-    sensor.read()
+    await sensor.read()
       .then(value => {
         return value
       })
