@@ -26,8 +26,8 @@ module.exports = {
     const sensor = new Gpio(SENSOR_PIN, 'in', 'both');
     await sensor.read()
       .then((value) => { 
-        return value 
+        const doorStatus = value ? "Lukket" : "Åpen"
+        return res.json({ "Status": "Ok", "Message": doorStatus })
       })
-    next()
   }
 }

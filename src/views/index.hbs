@@ -4,12 +4,25 @@
             <button type="button" class="btn btn-dark btn-circle btn-xl" id="btnOpen">Open</button>
         </div>
         <div class="pt-5 d-flex justify-content-center align-items-center">
-                <h3>Status: <span id="sensorStatus">{{ sensorStatus }}</span></h3>
-            </div>
+            <h3>Status: <span id="sensorStatus">{{ sensorStatus }}</span></h3>
+        </div>
     </div>
 </div>
 
 <script>
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+        fetch('/api/v1/door/status'})
+            .then(response => response.json())
+            .then(data => {
+                const sensorStatusEl = document.querySelector('#sensorStatus')
+                sensorStatusEl.innerHTML = data.Message
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
+
     document.querySelector("#btnOpen").addEventListener("click", (e) => {
         e.preventDefault()
         fetch('/api/v1/door', {

@@ -5,15 +5,11 @@ const router = express.Router();
 
 router
     .route('/')
-    .get(gpioController.activateRelay);
+    .get(gpioController.activateRelay)
+    .post(gpioController.activateRelay)
 
 router
     .route('/status')
-    .get((req, res, next) => {
-        res.json({
-            "Status": "Unknown",
-            "Message": "Not implemented yet"
-        })
-    });
+    .get(gpioController.sensorStatus);
 
 module.exports = router;
