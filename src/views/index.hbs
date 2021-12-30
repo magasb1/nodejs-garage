@@ -16,6 +16,7 @@
             .then(response => response.json())
             .then(data => {
                 const sensorStatusEl = document.querySelector('#sensorStatus')
+                console.log(data)
                 sensorStatusEl.innerHTML = data.Message
             })
             .catch((error) => {
