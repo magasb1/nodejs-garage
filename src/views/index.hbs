@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center align-items-center" style="height:100px;">
     <button type="button" class="btn btn-dark btn-circle btn-xl" id="btnOpen">Open</button>
     <div class="pt-5">
-        <h3>Status: <span id="sensorStatus">{{{> sensorStatus}}}</span></h3>
+        <h3>Status: <span id="sensorStatus">{{ sensorStatus }}</span></h3>
     </div>
 </div>
 
@@ -9,10 +9,7 @@
     document.querySelector("#btnOpen").addEventListener("click", (e) => {
         e.preventDefault()
         fetch('/api/v1/door', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            }
+            method: 'POST'
         })
             .then(response => response.json())
             .then(data => {
