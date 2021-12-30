@@ -38,8 +38,7 @@ app.engine(
     "hbs",
     exphbs({
         defaultLayout: "main",
-        extname: ".hbs",
-        helpers: require("./config/hbsHelpers"),
+        extname: ".hbs"
     })
 );
 app.set("view engine", "hbs");
