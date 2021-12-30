@@ -21,7 +21,7 @@ module.exports = {
     return res.json({ "Status": "Ok", "Message": "Door triggered" })
   },
 
-  sensorStatus: async (req, res, next) => {
+  sensorStatus: async () => {
 
     const SENSOR_PIN = process.env.SENSOR_GPIO_PIN || 15
     const TIMEOUT = process.env.RELAY_TIMEOUT || 500
