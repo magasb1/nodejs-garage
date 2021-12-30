@@ -29,9 +29,6 @@ module.exports = {
     const sensor = new Gpio(SENSOR_PIN, 'in', 'both');
     sensor.read()
       .then(value => {
-        setTimeout(() => {
-          sensor.unexport()
-        }, TIMEOUT)
         return value
       })
       .catch(err => {
