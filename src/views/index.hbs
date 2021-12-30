@@ -11,7 +11,7 @@
 
 <script>
 
-    document.addEventListener("DOMContentLoaded", function (event) {
+    document.onload = () => {
         fetch('/api/v1/door/status'})
             .then(response => response.json())
             .then(data => {
