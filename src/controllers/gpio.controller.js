@@ -1,5 +1,6 @@
 const path = require('path')
 const Gpio = require('onoff').Gpio
+const catchAsync = require("../utils/catchAsync");
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
 
 module.exports = {
@@ -21,7 +22,7 @@ module.exports = {
     return res.json({ "Status": "Ok", "Message": "Door triggered" })
   },
 
-  sensorStatus: async (req, res, next) => {
+  sensorStatus:  catchAsync( () => {
     const SENSOR_PIN = process.env.SENSOR_GPIO_PIN || 15
 
     const sensor = new Gpio(SENSOR_PIN, 'in', 'both');
@@ -32,6 +33,5 @@ module.exports = {
       .catch(err => {
         return err
       })
-    next()
-  }
+  })
 }
