@@ -1,5 +1,5 @@
 FROM node:lts-alpine
-RUN apk add dumb-init
+RUN apk add dumb-init g++ make python
 ENV NODE_ENV=production
 WORKDIR /app
 COPY --chown=node:node . /app
