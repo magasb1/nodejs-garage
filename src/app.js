@@ -64,6 +64,6 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use("/", require("./routes/index"));
 app.use('/api/v1', require('./routes/v1'));
 
-const server = app.listen(process.env.APP_PORT || 3001, () => {
+const server = app.listen(process.env.APP_PORT || 3000, () => {
     console.log(`🚀 Server ready at: http://localhost:${process.env.APP_PORT}`)
 })
