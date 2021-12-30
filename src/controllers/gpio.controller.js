@@ -17,5 +17,10 @@ module.exports = {
     }, process.env.RELAY_TIMEOUT)
 
     return res.json({ "Status": "Ok", "Message": "Door triggered" })
+  },
+
+  reedStatus: (req, res, next) => {
+
+    
   }
 }

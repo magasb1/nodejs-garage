@@ -1,0 +1,13 @@
+version: "3.3"
+
+services:
+  nodejs_garage:
+    # privileged: true
+    ports:
+      - 3000:3000
+    volumes:
+      - '/sys/devices/platform/soc/3f200000.gpio:/sys/devices/platform/soc/3f200000.gpio'
+      - '/sys/class/gpio:/sys/class/gpio'
+    build:
+      context: ./
+      dockerfile: Dockerfile
