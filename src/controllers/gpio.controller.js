@@ -29,9 +29,10 @@ module.exports = {
     await sensor.read()
       .then((value) => { 
         var doorStatus = value ? "Lukket" : "Åpen"
+        return res.json({ "Status": "Ok", "Message": doorStatus })
       })
 
-      console.log(`Door status: ${doorStatus}`)
-      return res.json({ "Status": "Ok", "Message": doorStatus })
+
+      
   }
 }
