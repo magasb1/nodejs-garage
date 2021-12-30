@@ -12,7 +12,7 @@
 <script>
 
     addEventListener("DOMContentLoaded", () => {
-        fetch('/api/v1/door/status'})
+        fetch('/api/v1/door/status')
             .then(response => response.json())
             .then(data => {
                 console.log(data)
