@@ -7,7 +7,7 @@ router
     .route('/')
     .get( (req, res, next) => {
         res.render("index", {
-            sensorStatus: gpioController.sensorStatus
+            sensorStatus: gpioController.sensorStatus ? "Lukket" : "Åpen"
         })
     });
 
