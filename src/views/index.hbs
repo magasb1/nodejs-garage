@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col">
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center">
             <button type="button" class="btn btn-dark btn-circle btn-xl" id="btnOpen">Open</button>
         </div>
         <div class="pt-5 d-flex justify-content-center align-items-center">
@@ -15,9 +15,7 @@
         fetch('/api/v1/door/status'})
             .then(response => response.json())
             .then(data => {
-                const sensorStatusEl = document.querySelector('#sensorStatus')
-                console.log(data)
-                sensorStatusEl.innerHTML = data.Message
+                document.querySelector('#sensorStatus').innerHTML = data.Message
             })
             .catch((error) => {
                 console.error('Error:', error);
