@@ -23,7 +23,7 @@ setTimeout(() => {
 async () => {
     const SENSOR_PIN = process.env.SENSOR_GPIO_PIN || 15
     const sensor = new Gpio(SENSOR_PIN, 'in', 'both');
-    await sensor.read().then((value) => { return value })
+    await sensor.read().then((value) => { console.log(value) })
  }
 
 
