@@ -20,13 +20,11 @@ setTimeout(() => {
  * https://raspberrypi.stackexchange.com/a/34948
  */
 
- sensorStatus: async () => {
+async () => {
     const SENSOR_PIN = process.env.SENSOR_GPIO_PIN || 15
     const sensor = new Gpio(SENSOR_PIN, 'in', 'both');
     await sensor.read().then((value) => { return value })
  }
-
-sensorStatus()
 
 
 
