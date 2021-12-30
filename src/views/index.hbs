@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-center align-items-center" style="height:100px;">
+    <button type="button" class="btn btn-dark btn-circle btn-xl" id="btnOpen">Open</button>
+</div>
+
+<script>
+    document.querySelector("#btnOpen").addEventListener("click", (e) => {
+        e.preventDefault()
+        fetch('/api/v1/door', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+    })
+</script>
