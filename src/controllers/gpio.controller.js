@@ -25,17 +25,12 @@ module.exports = {
     const SENSOR_PIN = process.env.SENSOR_GPIO_PIN || 15
 
     const sensor = new Gpio(SENSOR_PIN, 'in', 'both');
-    try {
-      sensor.read()
-        .then(value => {
-          return value
-        })
-        .catch(err => {
-          return err
-        })
-    } catch (error) {
-
-    }
-
+    sensor.read()
+      .then(value => {
+        return value
+      })
+      .catch(err => {
+        return err
+      })
   }
 }
