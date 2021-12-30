@@ -19,17 +19,14 @@ setTimeout(() => {
  * Reed switch wiring
  * https://raspberrypi.stackexchange.com/a/34948
  */
-const referenceSwitchMeasure = new Gpio(17, 'in', 'both');
 
-referenceSwitchMeasure.read()
-    .then(value => {
-        console.log(`Switch value: ${value}`)
-    })
-    .catch(err => {
-        console.log(`Error: ${err}`)
-    })
+ sensorStatus: async () => {
+    const SENSOR_PIN = process.env.SENSOR_GPIO_PIN || 15
+    const sensor = new Gpio(SENSOR_PIN, 'in', 'both');
+    await sensor.read().then((value) => { return value })
+)
 
-
+sensorStatus()
 
 
 
