@@ -15,6 +15,7 @@
         fetch('/api/v1/door/status'})
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 document.querySelector('#sensorStatus').innerHTML = data.Message
             })
             .catch((error) => {
