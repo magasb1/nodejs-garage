@@ -1,8 +1,10 @@
 version: "3.3"
 
 services:
-  nodejs_garage:
+  app:
     privileged: true
+    devices:
+      - /dev/gpiomem
     ports:
       - 3000:3000
     build:
