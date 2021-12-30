@@ -2,9 +2,9 @@ version: "3.3"
 
 services:
   app:
-    privileged: true
-    devices:
-      - /dev/gpiomem
+    volumes:
+        - '/sys/devices/platform/soc/3f200000.gpio:/sys/devices/platform/soc/3f200000.gpio'
+        - '/sys/class/gpio:/sys/class/gpio'
     ports:
       - 3000:3000
     build:

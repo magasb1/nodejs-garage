@@ -6,5 +6,4 @@ WORKDIR /app
 COPY --chown=node:node . /app
 RUN npm install --production
 RUN cp .env.example .env
-USER node
 CMD ["dumb-init", "node", "src/app.js"]
