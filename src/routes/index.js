@@ -7,7 +7,7 @@ router
     .route('/')
     .get( (req, res, next) => {
         res.render("index", {
-            sensorStatus: sensorData
+            sensorStatus: gpioController.sensorStatus
         })
     });
 
