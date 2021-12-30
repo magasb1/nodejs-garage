@@ -4,7 +4,9 @@ require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
 
 module.exports = {
   activateRelay: (req, res, next) => {
-    const relay = new Gpio(process.env.RELAY_GPIO_PIN, 'high');
+    const RELAY_PIN = process.env.RELAY_GPIO_PIN || 4
+    const TIMEOUT = process.env.RELAY_TIMEOUT || 500
+    const relay = new Gpio(RELAY_PIN, 'high');
     
     console.log(`Opening relay`)
     relay.write(1)
@@ -13,14 +15,28 @@ module.exports = {
       relay.write(0)
       setTimeout(() => {
         relay.unexport()
-      }, process.env.RELAY_TIMEOUT)
-    }, process.env.RELAY_TIMEOUT)
+      }, TIMEOUT)
+    }, TIMEOUT)
 
     return res.json({ "Status": "Ok", "Message": "Door triggered" })
   },
 
-  reedStatus: (req, res, next) => {
+  sensorStatus: (req, res, next) => {
 
+    const SENSOR_PIN = process.env.SENSOR_GPIO_PIN || 15
+    const TIMEOUT = process.env.RELAY_TIMEOUT || 500
+
+    const sensor = new Gpio(SENSOR_PIN, 'in', 'both');
+    sensor.read()
+    .then(value => {
+        return value
+    })
+    .catch(err => {
+        return err
+    })
+    setTimeout(() => {
+      sensor.unexport()
+    }, TIMEOUT)
     
   }
 }
