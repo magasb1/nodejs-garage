@@ -24,10 +24,13 @@ module.exports = {
   sensorStatus: async (res, res, next) => {
     const SENSOR_PIN = process.env.SENSOR_GPIO_PIN || 15
     const sensor = new Gpio(SENSOR_PIN, 'in', 'both');
+    var doorStatus
+
     await sensor.read()
       .then((value) => { 
-        const doorStatus = value ? "Lukket" : "Åpen"
-        return res.json({ "Status": "Ok", "Message": doorStatus })
+        var doorStatus = value ? "Lukket" : "Åpen"
       })
+
+      return res.json({ "Status": "Ok", "Message": doorStatus })
   }
 }
