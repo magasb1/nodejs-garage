@@ -7,8 +7,11 @@ router
     .route('/')
     .get( (req, res, next) => {
         console.log(`Door status: ${ gpioController.sensorStatus() }`)
-        res.render("index", {
-            sensorStatus: gpioController.sensorStatus
+        gpioController.sensorStatus()
+        .then((value) => {
+            res.render("index", {
+                sensorStatus: value ? "Lukket" : "Åpen"
+            })
         })
     });
 
