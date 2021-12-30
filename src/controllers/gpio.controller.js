@@ -31,6 +31,7 @@ module.exports = {
         var doorStatus = value ? "Lukket" : "Åpen"
       })
 
+      console.log(`Door status: ${doorStatus}`)
       return res.json({ "Status": "Ok", "Message": doorStatus })
   }
 }
