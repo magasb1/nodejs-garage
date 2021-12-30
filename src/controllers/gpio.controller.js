@@ -22,17 +22,20 @@ module.exports = {
   },
 
   sensorStatus: async () => {
-
     const SENSOR_PIN = process.env.SENSOR_GPIO_PIN || 15
-    const TIMEOUT = process.env.RELAY_TIMEOUT || 500
 
     const sensor = new Gpio(SENSOR_PIN, 'in', 'both');
-    sensor.read()
-      .then(value => {
-        return value
-      })
-      .catch(err => {
-        return err
-      })
+    try {
+      sensor.read()
+        .then(value => {
+          return value
+        })
+        .catch(err => {
+          return err
+        })
+    } catch (error) {
+
+    }
+
   }
 }
