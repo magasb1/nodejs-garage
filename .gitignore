@@ -1,6 +1,9 @@
 raspi
 package-lock.json
 
+# Database
+*.db
+
 # Logs
 logs
 *.log

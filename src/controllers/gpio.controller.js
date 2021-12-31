@@ -1,4 +1,4 @@
-const path = require('path')
+/* const path = require('path')
 const Gpio = require('onoff').Gpio
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
 
@@ -31,8 +31,11 @@ module.exports = {
         var doorStatus = value ? "Lukket" : "Åpen"
         return res.json({ "Status": "Ok", "Message": doorStatus })
       })
+      .catch((err) => {
+        return res.json({ "Status": "Error", "Message": err })
+      })
 
 
       
   }
-}
+} */

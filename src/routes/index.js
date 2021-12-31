@@ -1,5 +1,5 @@
 const express = require("express");
-const gpioController = require('../controllers/gpio.controller')
+//const gpioController = require('../controllers/gpio.controller')
 
 const router = express.Router();
 

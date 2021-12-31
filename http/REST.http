@@ -1,0 +1,25 @@
+@HOST = http://localhost:3000
+
+### Sign Up
+POST {{HOST}}/api/v1/auth/signup
+Content-Type: application/json
+
+{
+    "username": "user4",
+    "password": "password123",
+    "roles": ["user"]
+}
+
+### Sign In
+
+POST {{HOST}}/api/v1/auth/signin
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "Password123"
+}
+
+### Test auth
+
+GET {{HOST}}/api/v1/auth/roles

@@ -1,8 +1,8 @@
 const express = require('express');
-const gpioController = require('../../controllers/gpio.controller')
+//const gpioController = require('../../controllers/gpio.controller')
 
 const router = express.Router();
-
+/* 
 router
     .route('/')
     .get(gpioController.activateRelay)
@@ -11,5 +11,5 @@ router
 router
     .route('/status')
     .get(gpioController.sensorStatus);
-
-module.exports = router;
+*/
+module.exports = router; 

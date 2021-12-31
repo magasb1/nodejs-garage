@@ -1,16 +1,16 @@
-
+const path = require('path')
+const dotenv = require('dotenv')
 const express = require('express')
 const exphbs = require("express-handlebars");
-//const { PrismaClient } = require('@prisma/client')
 const compression = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
+
+const config = require('./config/config')
 const morgan = require('./config/morgan');
 
-const path = require('path')
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
+dotenv.config({ path: path.join(__dirname, '../../.env') });
 
-//const prisma = new PrismaClient()
 const app = express()
 
 // enable logging
@@ -22,10 +22,10 @@ app.use(helmet({
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"], 
-        scriptSrc: ["'self'", 'ourAuth0domain.us.auth0.com'],
-        styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
-        imgSrc: ["'self'", 'https://ourAuth0domain.us.auth0.com', 'data:'],
-        connectSrc: ["'self'", 'https://ourAuth0domain.us.auth0.com/oauth/token'],
+        scriptSrc: ["'self'"], 
+        styleSrc: ["'self'"], 
+        imgSrc: ["'self'", 'data:'],
+        connectSrc: ["'self'"], 
         fontSrc: ["'self'", 'https://fonts.gstatic.com'],
         objectSrc: ["'self'"],
         mediaSrc: ["'self'"],
@@ -45,7 +45,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 
 // enable cors
-app.use(cors());
+app.use(cors({
+  option: 'http://localhost:3000'
+}));
 app.options('*', cors());
 
 // view engine
@@ -64,6 +66,6 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use("/", require("./routes/index"));
 app.use('/api/v1', require('./routes/v1'));
 
-const server = app.listen(process.env.APP_PORT || 3000, () => {
-    console.log(`🚀 Server ready at: http://localhost:${process.env.APP_PORT}`)
+const server = app.listen(config.port || 3000, () => {
+    console.log(`🚀 Server ready at: http://localhost:${config.port}`)
 })

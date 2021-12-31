@@ -7,5 +7,5 @@ const authLimiter = rateLimit({
 });
 
 module.exports = {
-  authLimiter,
+  authLimiter
 };
