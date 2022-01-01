@@ -5,8 +5,6 @@ https://medium.com/@ethantcollins98/setting-and-using-cookies-with-a-node-js-exp
 https://www.bezkoder.com/node-js-jwt-authentication-mysql/#Controller_for_Authentication
     
 
-"onoff": "^6.0.3",
-
 ## Raspberry Pi
 
 Flash image and create two new files on boot-drine:
