@@ -1,4 +1,4 @@
-FROM node:14.18-alpine AS BUILD_IMAGE
+FROM node:16
 
 WORKDIR /app
 ENV NODE_ENV=production
