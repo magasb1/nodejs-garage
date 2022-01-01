@@ -26,7 +26,7 @@ router
     .route('/')
     .get(verifyCookie, (req, res, next) => {
         res.render("index", {
-
+            user: req.userId
         })
     });
 
@@ -40,7 +40,7 @@ router
 
 router
     .route('/logout')
-    .get((req, res, next) => {
+    .get(verifyCookie, (req, res, next) => {
         res
             .clearCookie("accessToken")
             .status(200)
