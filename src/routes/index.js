@@ -33,18 +33,18 @@ router
 router
     .route('/login')
     .get((req, res, next) => {
-        res.render("login", {
-
-        })
+        res
+            .status(200)
+            .render("login")
     });
 
-    router
+router
     .route('/logout')
     .get((req, res, next) => {
         res
-        .clearCookie("accessToken")
-        .status(200)
-        .redirect('/')
+            .clearCookie("accessToken")
+            .status(200)
+            .redirect('/')
     });
 
 module.exports = router;

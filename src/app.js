@@ -8,6 +8,7 @@ const helmet = require('helmet');
 const cookieParser = require("cookie-parser");
 
 const config = require('./config/config')
+const logger = require('./config/logger')
 const morgan = require('./config/morgan');
 
 dotenv.config({ path: path.join(__dirname, '../../.env') });
@@ -15,8 +16,7 @@ dotenv.config({ path: path.join(__dirname, '../../.env') });
 const app = express()
 
 // enable logging
-app.use(morgan.successHandler);
-app.use(morgan.errorHandler);
+app.use(morgan);
 
 // set security HTTP headers
 app.use(helmet({
@@ -71,5 +71,5 @@ app.use("/", require("./routes/index"));
 app.use('/api/v1', require('./routes/v1'));
 
 const server = app.listen(config.port || 3000, () => {
-    console.log(`🚀 Server ready at: http://localhost:${config.port}`)
+    logger.info(`Server ready at: http://localhost:${config.port}`)
 })
