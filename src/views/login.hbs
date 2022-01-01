@@ -13,7 +13,7 @@
     </form>
     <script>
         document.querySelector('#btnSignIn').addEventListener('click', (e) => {
-            e.preventDefault
+            e.preventDefault()
 
             fetch('api/v1/auth/signin', {
                 method: 'POST',
@@ -24,7 +24,12 @@
                 body: JSON.stringify({username: document.querySelector('#username').value, password: document.querySelector('#password').value}) // body data type must match "Content-Type" header
             })
                 .then(response => response.json())
-                .then(data => console.log(data));
+                .then(data => {
+                    if (!data.accessToken){
+                        console.log(data.message)
+                    }
+                    window.location.replace("/")
+                })
         })
 
     </script>

@@ -38,4 +38,13 @@ router
         })
     });
 
+    router
+    .route('/logout')
+    .get((req, res, next) => {
+        res
+        .clearCookie("accessToken")
+        .status(200)
+        .redirect('/')
+    });
+
 module.exports = router;
