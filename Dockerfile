@@ -1,6 +1,6 @@
 FROM node:lts-alpine
 RUN apk add dumb-init g++ make
-RUN apk add python3 py3-pip
+RUN apk add --no-cache python3 py3-pip
 ENV NODE_ENV=production
 WORKDIR /app
 COPY . /app
