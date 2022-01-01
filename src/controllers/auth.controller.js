@@ -72,7 +72,12 @@ exports.signin = (req, res) => {
         for (let i = 0; i < roles.length; i++) {
           authorities.push("ROLE_" + roles[i].name.toUpperCase());
         }
-        res.status(200).send({
+        res.cookie("accessToken", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+        })
+        .status(200)
+        .send({
           id: user.id,
           username: user.username,
           email: user.email,
@@ -85,6 +90,13 @@ exports.signin = (req, res) => {
       res.status(500).send({ message: err.message });
     });
 };
+
+exports.signout = (req, res, next) => {
+    res
+      .clearCookie("accessToken")
+      .status(200)
+      .send({ message: "Successfully logged out" });
+}
 
 exports.roles = (req, res) => {
   Role.findAll({ attributes: ["name"] }).then((roles) => {

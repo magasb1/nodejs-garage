@@ -22,6 +22,24 @@ verifyToken = (req, res, next) => {
   });
 };
 
+verifyCookie = (req, res, next) => {
+  const token = req.cookies.accessToken;
+  if (!token) {
+    return res.status(403).send({
+      message: "No cookie provided!"
+    });
+  }
+  jwt.verify(token, config.secret, (err, decoded) => {
+    if (err) {
+      return res.status(401).send({
+        message: "Unauthorized!"
+      });
+    }
+    req.userId = decoded.id;
+    next();
+  });
+};
+
 isAdmin = (req, res, next) => {
   User.findByPk(req.userId).then(user => {
     user.getRoles().then(roles => {
@@ -64,6 +82,7 @@ isUserOrAdmin = (req, res, next) => {
 
 const authJwt = {
   verifyToken: verifyToken,
+  verifyCookie: verifyCookie,
   isAdmin: isAdmin,
   isUserOrAdmin: isUserOrAdmin
 };

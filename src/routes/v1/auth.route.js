@@ -28,6 +28,10 @@ router
     .route('/signin')
     .post(controller.signin)
 
+    router
+    .route('/signout')
+    .get(controller.signout)
+
 router
     .route('/roles')
     .get(

@@ -1,8 +1,11 @@
 # Nodejs Garage
 
-    https://www.bezkoder.com/node-js-jwt-authentication-mysql/#Controller_for_Authentication
+https://medium.com/@ethantcollins98/setting-and-using-cookies-with-a-node-js-express-server-49479673d043
+
+https://www.bezkoder.com/node-js-jwt-authentication-mysql/#Controller_for_Authentication
     
-    "onoff": "^6.0.3",
+
+"onoff": "^6.0.3",
 
 ## Raspberry Pi
 

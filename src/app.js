@@ -5,6 +5,7 @@ const exphbs = require("express-handlebars");
 const compression = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
+const cookieParser = require("cookie-parser");
 
 const config = require('./config/config')
 const morgan = require('./config/morgan');
@@ -22,8 +23,8 @@ app.use(helmet({
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"], 
-        scriptSrc: ["'self'"], 
-        styleSrc: ["'self'"], 
+        scriptSrc: ["'self'", "'unsafe-inline'"], 
+        styleSrc: ["'self'", "'unsafe-inline'"], 
         imgSrc: ["'self'", 'data:'],
         connectSrc: ["'self'"], 
         fontSrc: ["'self'", 'https://fonts.gstatic.com'],
@@ -49,6 +50,9 @@ app.use(cors({
   option: 'http://localhost:3000'
 }));
 app.options('*', cors());
+
+// enable cookie parser
+app.use(cookieParser());
 
 // view engine
 app.engine(
