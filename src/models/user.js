@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -16,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "userId",
         otherKey: "roleId",
         as: "roles"
+      });
+      user.hasOne(models.refreshToken, {
+        foreignKey: 'userId', targetKey: 'id'
       });
     }
   };

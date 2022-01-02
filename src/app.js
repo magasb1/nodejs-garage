@@ -19,22 +19,8 @@ const app = express()
 app.use(morgan);
 
 // set security HTTP headers
-app.use(helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"], 
-        scriptSrc: ["'self'", "'unsafe-inline'"], 
-        styleSrc: ["'self'", "'unsafe-inline'"], 
-        imgSrc: ["'self'", 'data:'],
-        connectSrc: ["'self'"], 
-        fontSrc: ["'self'", 'https://fonts.gstatic.com'],
-        objectSrc: ["'self'"],
-        mediaSrc: ["'self'"],
-        frameSrc: ["'self'"]
-      },
-      reportOnly: true
-    }
-  }));
+
+app.use(helmet(require('./config/helmet')));
 
 // parse json request body
 app.use(express.json());
@@ -46,10 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 
 // enable cors
-app.use(cors({
-  option: 'http://localhost:3000'
-}));
-app.options('*', cors());
+app.use(cors(require('./config/cors')));
 
 // enable cookie parser
 app.use(cookieParser());

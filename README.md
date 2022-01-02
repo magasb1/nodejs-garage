@@ -1,9 +1,14 @@
 # Nodejs Garage
 
-https://medium.com/@ethantcollins98/setting-and-using-cookies-with-a-node-js-express-server-49479673d043
+https://www.bezkoder.com/node-js-jwt-authentication-mysql
 
-https://www.bezkoder.com/node-js-jwt-authentication-mysql/#Controller_for_Authentication
+https://www.bezkoder.com/jwt-refresh-token-node-js/
+
+https://dev.to/bahdcoder/the-ultimate-guide-to-jwt-server-side-auth-with-refresh-tokens-4jb3?utm_source=dormosheio&utm_campaign=dormosheio
+
+https://hasura.io/blog/best-practices-of-using-jwt-with-graphql/#ssr
     
+    "onoff": "^6.0.3",
 
 ## Raspberry Pi
 

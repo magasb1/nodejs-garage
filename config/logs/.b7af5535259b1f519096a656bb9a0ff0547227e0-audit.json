@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "D:\\git\\nodejs-garage\\config\\logs\\.b7af5535259b1f519096a656bb9a0ff0547227e0-audit.json",
+    "files": [
+        {
+            "date": 1641152538837,
+            "name": "D:\\git\\nodejs-garage\\config\\logs\\app-2022-01-02.log",
+            "hash": "4fab47cec80f182bc0ac559e47a447d9"
+        }
+    ]
+}

@@ -6,10 +6,60 @@ const config = require("../config/auth.js");
 
 const User = db.user;
 const Role = db.role;
+const RefreshToken = db.refreshToken;
 
 const Op = db.Sequelize.Op;
 
-exports.signup = (req, res) => {
+
+exports.refreshToken = async (req, res, next) => {
+  const { refreshToken: requestToken } = req.body;
+
+  if (requestToken == null) {
+    return res.status(403).json({ message: "Refresh Token is required!" });
+  }
+
+  try {
+    let refreshToken = await RefreshToken.findOne({ where: { token: requestToken } });
+
+    if (!refreshToken) {
+      res.status(403).json({ message: "Refresh token is not in database!" });
+      return;
+    }
+
+    if (RefreshToken.verifyExpiration(refreshToken)) {
+      RefreshToken.destroy({ where: { id: refreshToken.id } });
+      
+      res.status(403).json({
+        message: "Refresh token was expired. Please make a new signin request",
+      });
+      return;
+    }
+
+    const user = await refreshToken.getUser();
+    let newAccessToken = jwt.sign({ id: user.id }, config.secret, {
+      expiresIn: config.jwtExpiration,
+    });
+
+    return res.status(200).json({
+      accessToken: newAccessToken,
+      refreshToken: refreshToken.token,
+    });
+  } catch (err) {
+    return res.status(500).send({ message: err });
+  }
+};
+
+exports.roles = async (req, res) => {
+  Role.findAll({ attributes: ["name"] }).then((roles) => {
+    let array = []
+    roles.forEach(element => {
+      array.push(element.name)
+    });
+    res.status(200).send(array)
+  })
+};
+
+exports.signup = async (req, res) => {
   // Save User to Database
   User.create({
     username: req.body.username,
@@ -40,13 +90,13 @@ exports.signup = (req, res) => {
     });
 };
 
-exports.signin = (req, res) => {
+exports.signin = async (req, res) => {
   User.findOne({
     where: {
       username: req.body.username
     }
   })
-    .then(user => {
+    .then(async (user) => {
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
       }
@@ -64,25 +114,33 @@ exports.signin = (req, res) => {
       }
 
       var token = jwt.sign({ id: user.id }, config.secret, {
-        expiresIn: 86400 // 24 hours
+        expiresIn: config.jwtExpiration
       });
+
+      var refreshToken = await RefreshToken.createToken(user, req.get('User-Agent'));
 
       var authorities = [];
       user.getRoles().then(roles => {
         for (let i = 0; i < roles.length; i++) {
           authorities.push("ROLE_" + roles[i].name.toUpperCase());
         }
-        res.cookie("accessToken", token, {
+        res
+        .cookie("refreshToken", refreshToken, {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
+          maxAge: config.jwtRefreshExpiration * 1000, // convert from minute to milliseconds
+        })
+        .cookie("accessToken", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production"
         })
         .status(200)
         .send({
           id: user.id,
           username: user.username,
-          email: user.email,
           roles: authorities,
-          accessToken: token
+          accessToken: token,
+          refreshToken: refreshToken,
         });
       });
     })
@@ -91,19 +149,10 @@ exports.signin = (req, res) => {
     });
 };
 
-exports.signout = (req, res, next) => {
+exports.signout = async (req, res, next) => {
     res
+      .clearCookie("refreshToken")
       .clearCookie("accessToken")
       .status(200)
       .send({ message: "Successfully logged out" });
-}
-
-exports.roles = (req, res) => {
-  Role.findAll({ attributes: ["name"] }).then((roles) => {
-    let array = []
-    roles.forEach(element => {
-      array.push(element.name)
-    });
-    res.status(200).send(array)
-  })
 };

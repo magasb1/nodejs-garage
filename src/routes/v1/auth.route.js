@@ -28,7 +28,11 @@ router
     .route('/signin')
     .post(controller.signin)
 
-    router
+router
+    .route('/refreshtoken')
+    .post(controller.refreshToken)
+
+router
     .route('/signout')
     .get(controller.signout)
 
@@ -37,6 +41,6 @@ router
     .get(
         [authJwt.verifyToken],
         controller.roles
-        )
+    )
 
 module.exports = router;
