@@ -5,13 +5,14 @@ ENV PYTHONUNBUFFERED=1
 COPY . /app
 WORKDIR /app
 
-RUN apk add --no-cache --virtual .gyp .builds-deps build-base \
+RUN apk add --no-cache --virtual build-essential \
           dumb-init \
           python3 \
           py3-pip \
           make \
-          g++ \ 
-   && ln -sf python3 /usr/bin/python \
+          g++
+
+RUN ln -sf python3 /usr/bin/python \
    && npm install --production \
    && npm cache clean --force \
    && cp .env.example .env
