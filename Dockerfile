@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1
 COPY . /app
 WORKDIR /app
 
-RUN apk add --no-cache --virtual .builds-deps build-base \
+RUN apk add --no-cache --virtual .gyp .builds-deps build-base \
           dumb-init \
           python3 \
           py3-pip \
