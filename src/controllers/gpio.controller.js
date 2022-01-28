@@ -1,4 +1,4 @@
-/* 
+
 const path = require('path')
 const Gpio = require('onoff').Gpio
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
@@ -39,4 +39,3 @@ module.exports = {
 
 
 }
- */
