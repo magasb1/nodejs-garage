@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1
 COPY . /app
 WORKDIR /app
 
-RUN apk add --no-cache --virtual \
+RUN apk add --no-cache --virtual .builds-deps build-base \
           dumb-init \
           python3 \
           py3-pip \
@@ -13,6 +13,7 @@ RUN apk add --no-cache --virtual \
           g++ \ 
    && ln -sf python3 /usr/bin/python \
    && npm install --production \
+   && npm cache clean --force \
    && cp .env.example .env
 
 CMD ["dumb-init", "node", "src/app.js"]
